@@ -3,7 +3,8 @@
 # Declare characters used by this game. The color argument colorizes the
 # name of the character.
 
-define e = Character("Eileen",color="#FF6347")
+# define eil = Character("Eileen", callback = name_callback, cb_name = "eileen")
+define e = Character("Eileen",color="#FF6347", callback = name_callback, cb_name = "eileen")#This is a placeholder character.
 
 define Sus = Character("Theseus",color="#c8ffc8")#Duke of Athens
 define Hip = Character("Hippolyta")#Queen of the Amazons
@@ -40,11 +41,12 @@ Act 4, Scene 1: The same. LYSANDER, DEMETRIUS, HELENA, and HERMIA
 Act 4, Scene 2: Athens. QUINCE'S house.
 Act 5, Scene 1: Athens. The palace of THESEUS.
 """
-image bg castle = im.Scale("castle.jpg",1920, 1080) #palace
-image bg parkwatercolor = im.Scale("parkwatercolor.jpg",1920, 1080) #
+image bg parkwatercolor = im.Scale("parkwatercolor.jpg",1920, 1080)
 image bg stairs = im.Scale("autumnoldstairs.jpg",1920, 1080)
+image bg tunnel = im.Scale("falltunnelwatercolorfoto.jpg", 1920, 1080)
 
-image smile01 = "Sprite F PinkH Professional Smile01.png"
+# image eileen happy = At('eileen_happy', sprite_highlight('eileen'))
+image smile01 = At("Sprite F PinkH Professional Smile01.png", sprite_highlight('eileen'))
 image smile02 = "Sprite F PinkH Professional Smile02.png" 
 image sad02 = "Sprite F PinkH Professional Sad02.png"
 
@@ -54,14 +56,25 @@ label start:
     # Show a background. This uses a placeholder by default, but you can
     # add a file (named either "bg room.png" or "bg room.jpg") to the
     # images directory to show it.
-
-    scene bg castle
+    play music "audio/04. Carnival.mp3" fadeout 1.0 fadein 1.0
+    scene bg tunnel
     show smile01:
         zoom 0.5
+    show smile02 at right:
+        zoom 0.5
+    
     #--------SCENE I. Athens. The palace of THESEUS.--------
 
-    #Characters in scene I:
-    #THESEUS, HIPPOLYTA, PHILOSTRATE, EGEUS, HERMIA, LYSANDER, DEMETRIUS, HELENA
+    #Characters in scene I:  
+    #THESEUS, x
+    #HIPPOLYTA, x
+    #PHILOSTRATE, 
+    #EGEUS,x
+
+    #HERMIA, x
+    #LYSANDER, x
+    #DEMETRIUS, 
+    #HELENA  x
 
     # --------ACT I Scene I--------
 
@@ -146,8 +159,9 @@ label start:
 
     Her "I do entreat your grace to pardon me.
     I know not by what power I am made bold,
-    Nor how it may concern my modesty,
-    In such a presence here to plead my thoughts;
+    Nor how it may concern my modesty,"
+
+    Her "In such a presence here to plead my thoughts;
     But I beseech your grace that I may know
     The worst that may befall me in this case,
     If I refuse to wed Demetrius."
@@ -177,8 +191,9 @@ label start:
     Sus "Take time to pause; and, by the next new moon--
     The sealing-day betwixt my love and me,
     For everlasting bond of fellowship--
-    Upon that day either prepare to die
-    For disobedience to your father's will,
+    Upon that day either prepare to die"
+
+    Sus "For disobedience to your father's will,
     Or else to wed Demetrius, as he would;
     Or on Diana's altar to protest
     For aye austerity and single life."
@@ -197,12 +212,14 @@ label start:
     Lys "I am, my lord, as well derived as he,
     As well possess'd; my love is more than his;
     My fortunes every way as fairly rank'd,
-    If not with vantage, as Demetrius';
-    And, which is more than all these boasts can be,
+    If not with vantage, as Demetrius';"
+
+    Lys "And, which is more than all these boasts can be,
     I am beloved of beauteous Hermia:
     Why should not I then prosecute my right?
-    Demetrius, I'll avouch it to his head,
-    Made love to Nedar's daughter, Helena,
+    Demetrius, I'll avouch it to his head,"
+
+    Lys "Made love to Nedar's daughter, Helena,
     And won her soul; and she, sweet lady, dotes,
     Devoutly dotes, dotes in idolatry,
     Upon this spotted and inconstant man."
@@ -210,16 +227,19 @@ label start:
     Sus "I must confess that I have heard so much,
     And with Demetrius thought to have spoke thereof;
     But, being over-full of self-affairs,
-    My mind did lose it. But, Demetrius, come;
-    And come, Egeus; you shall go with me,
+    My mind did lose it. But, Demetrius, come;"
+
+    Sus "And come, Egeus; you shall go with me,
     I have some private schooling for you both.
     For you, fair Hermia, look you arm yourself
-    To fit your fancies to your father's will;
-    Or else the law of Athens yields you up--
+    To fit your fancies to your father's will;"
+
+    Sus "Or else the law of Athens yields you up--
     Which by no means we may extenuate--
     To death, or to a vow of single life.
-    Come, my Hippolyta: what cheer, my love?
-    Demetrius and Egeus, go along:
+    Come, my Hippolyta: what cheer, my love?"
+
+    Sus "Demetrius and Egeus, go along:
     I must employ you in some business
     Against our nuptial and confer with you
     Of something nearly that concerns yourselves."
@@ -228,7 +248,8 @@ label start:
 
     #Exeunt all but LYSANDER and HERMIA
 
-    scene bg stairs
+    scene bg stairs with dissolve
+    play music "audio/03. Sad Sad Kiddie.mp3" fadeout 1.0 fadein 1.0
     show sad02:
         zoom .5
 
@@ -256,8 +277,9 @@ label start:
     Lys "Or, if there were a sympathy in choice,
     War, death, or sickness did lay siege to it,
     Making it momentany as a sound,
-    Swift as a shadow, short as any dream;
-    Brief as the lightning in the collied night,
+    Swift as a shadow, short as any dream;"
+
+    Lys "Brief as the lightning in the collied night,
     That, in a spleen, unfolds both heaven and earth,
     And ere a man hath power to say 'Behold!'
     The jaws of darkness do devour it up:
@@ -273,12 +295,14 @@ label start:
     Lys "A good persuasion: therefore, hear me, Hermia.
     I have a widow aunt, a dowager
     Of great revenue, and she hath no child:
-    From Athens is her house remote seven leagues;
-    And she respects me as her only son.
+    From Athens is her house remote seven leagues;"
+
+    Lys "And she respects me as her only son.
     There, gentle Hermia, may I marry thee;
     And to that place the sharp Athenian law
-    Cannot pursue us. If thou lovest me then,
-    Steal forth thy father's house to-morrow night;
+    Cannot pursue us. If thou lovest me then,"
+
+    Lys "Steal forth thy father's house to-morrow night;
     And in the wood, a league without the town,
     Where I did meet thee once with Helena,
     To do observance to a morn of May,
@@ -287,12 +311,14 @@ label start:
     Her "My good Lysander!
     I swear to thee, by Cupid's strongest bow,
     By his best arrow with the golden head,
-    By the simplicity of Venus' doves,
-    By that which knitteth souls and prospers loves,
+    By the simplicity of Venus' doves,"
+
+    Her "By that which knitteth souls and prospers loves,
     And by that fire which burn'd the Carthage queen,
     When the false Troyan under sail was seen,
-    By all the vows that ever men have broke,
-    In number more than ever women spoke,
+    By all the vows that ever men have broke,"
+
+    Her "In number more than ever women spoke,
     In that same place thou hast appointed me,
     To-morrow truly will I meet with thee."
 
@@ -305,12 +331,14 @@ label start:
     Hel "Call you me fair? that fair again unsay.
     Demetrius loves your fair: O happy fair!
     Your eyes are lode-stars; and your tongue's sweet air
-    More tuneable than lark to shepherd's ear,
-    When wheat is green, when hawthorn buds appear.
+    More tuneable than lark to shepherd's ear,"
+
+    Hel "When wheat is green, when hawthorn buds appear.
     Sickness is catching: O, were favour so,
     Yours would I catch, fair Hermia, ere I go;
-    My ear should catch your voice, my eye your eye,
-    My tongue should catch your tongue's sweet melody.
+    My ear should catch your voice, my eye your eye,"
+
+    Hel "My tongue should catch your tongue's sweet melody.
     Were the world mine, Demetrius being bated,
     The rest I'd give to be to you translated.
     O, teach me how you look, and with what art
@@ -340,22 +368,23 @@ label start:
         That he hath turn'd a heaven unto a hell!"
 
     Lys "Helen, to you our minds we will unfold:
-    To-morrow night, when Phoebe doth behold
-    Her silver visage in the watery glass,
-    Decking with liquid pearl the bladed grass,
-    A time that lovers' flights doth still conceal,
-    Through Athens' gates have we devised to steal."
+        To-morrow night, when Phoebe doth behold
+        Her silver visage in the watery glass,
+        Decking with liquid pearl the bladed grass,
+        A time that lovers' flights doth still conceal,
+        Through Athens' gates have we devised to steal."
 
     Her "And in the wood, where often you and I
-    Upon faint primrose-beds were wont to lie,
-    Emptying our bosoms of their counsel sweet,
-    There my Lysander and myself shall meet;
-    And thence from Athens turn away our eyes,
-    To seek new friends and stranger companies.
-    Farewell, sweet playfellow: pray thou for us;
-    And good luck grant thee thy Demetrius!
-    Keep word, Lysander: we must starve our sight
-    From lovers' food till morrow deep midnight."
+        Upon faint primrose-beds were wont to lie,
+        Emptying our bosoms of their counsel sweet,
+        There my Lysander and myself shall meet;
+        And thence from Athens turn away our eyes,"
+
+    Her "To seek new friends and stranger companies.
+        Farewell, sweet playfellow: pray thou for us;
+        And good luck grant thee thy Demetrius!
+        Keep word, Lysander: we must starve our sight
+        From lovers' food till morrow deep midnight."
 
     Lys "I will, my Hermia."
 
@@ -368,39 +397,39 @@ label start:
     Hel "How happy some o'er other some can be!
         Through Athens I am thought as fair as she.
         But what of that? Demetrius thinks not so;
-        He will not know what all but he do know:
-        And as he errs, doting on Hermia's eyes,
+        He will not know what all but he do know:"
+
+    Hel "And as he errs, doting on Hermia's eyes,
         So I, admiring of his qualities:
         Things base and vile, folding no quantity,
-        Love can transpose to form and dignity:
-        Love looks not with the eyes, but with the mind;
+        Love can transpose to form and dignity:"
+
+    Hel "Love looks not with the eyes, but with the mind;
         And therefore is wing'd Cupid painted blind:
         Nor hath Love's mind of any judgement taste;
-        Wings and no eyes figure unheedy haste:
-        And therefore is Love said to be a child,
+        Wings and no eyes figure unheedy haste:"
+
+    Hel "And therefore is Love said to be a child,
         Because in choice he is so oft beguiled.
         As waggish boys in game themselves forswear,
-        So the boy Love is perjured every where:
-        For ere Demetrius look'd on Hermia's eyne,
+        So the boy Love is perjured every where:"
+
+    Hel "For ere Demetrius look'd on Hermia's eyne,
         He hail'd down oaths that he was only mine;
         And when this hail some heat from Hermia felt,
-        So he dissolved, and showers of oaths did melt.
-        I will go tell him of fair Hermia's flight:
+        So he dissolved, and showers of oaths did melt."
+
+    Hel "I will go tell him of fair Hermia's flight:
         Then to the wood will he to-morrow night
-        Pursue her; and for this intelligence
+        Pursue her; and for this intelligence 
         If I have thanks, it is a dear expense:
         But herein mean I to enrich my pain,
         To have his sight thither and back again."
 
     #--------END ACT I, Scene I--------
-
-
-
-
-
     show smile02:
         zoom 0.5
-    e "Hoory No Fucking Bugs"
+    e "Hoory No Bugs!"
 
     # This ends the game.
     return
